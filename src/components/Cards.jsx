@@ -10,37 +10,37 @@ import { toast } from 'react-toastify'
 import contractData from '../contract.json'
 
 
-function Cards({ item, currNft, player, setPlayer, setCurrNft, account, idx }) {
+function Cards({ item, currNft, player, setPlayer, setCurrNft, account, idx, commission }) {
 
   // let showPopup = false;
 
   // function handleOpen() {
   //   showPopup = true;
   // }
-  const [commission, setCommission] = useState(0);
-  useEffect(() => {
-    async function getCommission() {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
-      let marketplaceAddress = contractData.address;
-      const marketplacecontract = new ethers.Contract(
-        marketplaceAddress,
-        contractData.abi,
-        signer
-      );
+  // const [commission, setCommission] = useState(0);
+  // useEffect(() => {
+  //   async function getCommission() {
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     await provider.send("eth_requestAccounts", []);
+  //     const signer = provider.getSigner();
+  //     let marketplaceAddress = contractData.address;
+  //     const marketplacecontract = new ethers.Contract(
+  //       marketplaceAddress,
+  //       contractData.abi,
+  //       signer
+  //     );
 
-      setCommission(Number(await marketplacecontract.commission.call()));
-      setCommission(Number(await marketplacecontract.commission.call()));
-      console.log(commission);
-      // console.log(typeof((item.price * (1 + commission/100)).toFixed(8)));
-      const totalPrice = item.price * (1 + commission / 100);
-      const roundedTotalPrice = Math.round(totalPrice * 10**10) / 10**10; // Round to 6 decimal places
-      console.log(roundedTotalPrice);
+  //     setCommission(Number(await marketplacecontract.commission.call()));
+  //     setCommission(Number(await marketplacecontract.commission.call()));
+  //     console.log(commission);
+  //     // console.log(typeof((item.price * (1 + commission/100)).toFixed(8)));
+  //     const totalPrice = item.price * (1 + commission / 100);
+  //     const roundedTotalPrice = Math.round(totalPrice * 10**10) / 10**10; // Round to 6 decimal places
+  //     console.log(roundedTotalPrice);
 
-    }
-    getCommission()
-  }, [])
+  //   }
+  //   getCommission()
+  // }, [])
 
   async function handlePayment(item) {
     try {

@@ -8,9 +8,8 @@ import { ethers } from 'ethers';
 // import { toast } from 'react-toastify';
 
 function NFTs({ marketplace, setMarketplace, account, setNFTitem }) {
-  useEffect(() => {
-    // document.title = "NFT"
-  }, []);
+
+  const [commission, setCommission] = useState(0);
 
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
@@ -28,8 +27,18 @@ function NFTs({ marketplace, setMarketplace, account, setNFTitem }) {
       );
       console.log(marketplace);
       setMarketplace(marketplacecontract);
+      const comm = Number(await marketplacecontract.commission.call());
+      console.log(comm);
+      setCommission(comm);
+      setCommission(comm);
+      console.log(commission);
       setLoading(false)
     }
+    const comm = Number(await marketplace.commission.call());
+    // console.log(comm);
+    setCommission(comm);
+    setCommission(comm);
+    // console.log(commission);
     const itemCount = Number(await marketplace.fileCount.call())
     console.log("count: "+itemCount);
     
@@ -111,7 +120,7 @@ function NFTs({ marketplace, setMarketplace, account, setNFTitem }) {
         {
           (items.length > 0 ?
             items.map((item, idx) => (
-              <Cards item={item} currNft={currNft} player={player} setPlayer={setPlayer} setCurrNft={setCurrNft} account={account} idx={idx}/>
+              <Cards item={item} currNft={currNft} player={player} setPlayer={setPlayer} setCurrNft={setCurrNft} account={account} idx={idx} commission={commission}/>
             ))
 
             : (

@@ -23,6 +23,8 @@ function Create({ marketplace, account, setMarketplace }) {
 
   useEffect(() => {
     document.title = "Create"
+    // toast.success("NFT added to marketplace successfully", { position: "top-center" })
+
   }, []);
 
   const handleChange = (event) => {
@@ -224,7 +226,7 @@ function Create({ marketplace, account, setMarketplace }) {
       })
 
       await tx1.wait()
-      toast.success("Building added to marketplace successfully", { position: "top-center" })
+      toast.success("NFT added to marketplace successfully", { position: "top-center" })
     } catch (error) {
       toast.error("Error adding NFT to Marketplace")
       console.log(error);
@@ -255,17 +257,18 @@ function Create({ marketplace, account, setMarketplace }) {
           <form class="max-w-sm mx-auto">
 
             <div className='max-w-lg mx-auto'>
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="thumbnail">Upload Thumbnail</label>
+              {/* <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="thumbnail">Upload Thumbnail</label> */}
+              <label class="block mb-2 text-sm font-medium text-white" for="thumbnail">Upload Thumbnail</label>
               <input onChange={thumbnailChangeHandler} name="thumbnail" class="block w-full mb-4 h-8 text-m  text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" accept="image/*" />
             </div>
             <div className='max-w-lg mx-auto'>
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="nftfile">Upload NFT File</label>
+              <label class="block mb-2 text-sm font-medium text-white" for="nftfile">Upload NFT File</label>
               <input onChange={changeHandler} name="nftfile" class="block w-full mb-4 h-8 text-m  text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" accept="video/*" />
             </div>
 
 
             <div class="mb-4">
-              <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NFT Name</label>
+              <label for="title" class="block mb-2 text-sm font-medium text-white">NFT Name</label>
               <input onChange={handleChange} type="text" id="title" name='title' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter NFT name" required />
             </div>
 
@@ -275,11 +278,11 @@ function Create({ marketplace, account, setMarketplace }) {
             </div> */}
 
             <div class="mb-4">
-              <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NFT Price</label>
+              <label for="price" class="block mb-2 text-sm font-medium text-white">NFT Price</label>
               <input onChange={handleChange} min={1} type="number" id="price" name='price' class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter Price" />
             </div>
 
-            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <label for="description" class="block mb-2 text-sm font-medium text-white">Description</label>
             <textarea onChange={handleChange} name="description" id="description" rows="4" class="block p-2.5 w-full text-sm  mb-4 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
             {/* <div class="mb-4">
     <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
